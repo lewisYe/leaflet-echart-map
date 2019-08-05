@@ -112,6 +112,7 @@ module.exports = {
       "~components": path.resolve(__dirname, '../src/components'),
       "~views": path.resolve(__dirname, '../src/views'),
       "~images": path.resolve(__dirname, '../src/static/images'),
+      "~static": path.resolve(__dirname, '../src/static'),
     },
     modules: [
       'node_modules',

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import china from './china'
-import zj from './zj'
+import china from '~static/geoJson/china'
+import zj from '~static/geoJson/zhejiang'
 import { Map, TileLayer, Marker, Popup, GeoJSON, LayerGroup } from 'react-leaflet'
 import L from 'leaflet'
 import Styles from './index.less';

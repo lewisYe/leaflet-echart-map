@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import L from 'leaflet'
-import china from './china'
-import zj from './zj'
+import china from '~static/geoJson/china'
+import zj from '~static/geoJson/zhejiang'
 import Styles from './index.less'
-import 'leaflet-echarts'
-import echarts from 'echarts';
-import 'echarts-leaflet';
 
 export default class LeafletMap extends Component {
   constructor(props) {
@@ -33,10 +30,6 @@ export default class LeafletMap extends Component {
     L.marker([29.876859000, 119.526855000], {
       icon: myIcon
     }).addTo(map);
-
-    // var overlay = new L.echartsLayer(map, echarts);
-    // var chartsContainer = overlay.getEchartsContainer();
-    // var myChart = overlay.initECharts(chartsContainer);
   }
   render() {
     return (
