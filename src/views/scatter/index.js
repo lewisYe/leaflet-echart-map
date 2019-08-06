@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import L from 'leaflet';
 import { tiledMapLayer, echartsLayer } from '@supermap/iclient-leaflet';
 import china from '~static/geoJson/china'
-import './index.less'
+import styles from './index.less'
 import data from './data'
 import '~components/LeafletHeatLayer'
 
@@ -100,17 +100,38 @@ export default class Scatter extends Component {
         }
       ]
     };
-    // echartsLayer(option).addTo(map);
+    var eLayer = echartsLayer(option)
+    eLayer.addTo(map);
 
-    L.heatLayer(heatPoints, {
+    var hLayer = L.heatLayer(heatPoints, {
       radius: 30,
       minOpacity: 0.5
-    }).addTo(map);
+    })
+    hLayer.addTo(map);
+    this.setState({
+      eLayer,
+      hLayer,
+      map
+    })
   }
-
+  onHeatClick = () => {
+    let { eLayer, hLayer, map } = this.state;
+    eLayer.remove()
+    hLayer.addTo(map);
+  }
+  onScatterClick = () => {
+    let { eLayer, hLayer, map } = this.state;
+    eLayer.addTo(map);
+    hLayer.remove()
+  }
   render() {
     return (
-      <div id="map" style={{ height: '100vh' }}></div>
+      <div className={styles.mapWarp}>
+        <div id="map" style={{ height: '100vh' }}></div>
+        <div className={styles.btns}>
+          <div onClick={this.onHeatClick}>热力图</div><div onClick={this.onScatterClick}>散点图</div>
+        </div>
+      </div>
     )
   }
 }
