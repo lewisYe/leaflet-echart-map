@@ -6,6 +6,7 @@ const Maps = lazy(() => import('~views/map/index'));
 const LeafletMap = lazy(() => import('~views/leaflet/index'));
 const ReactLeafletMap = lazy(() => import('~views/leaflet/react'));
 const Scatter = lazy(() => import('~views/scatter/index'));
+const Bar = lazy(() => import('~views/bar/index'));
 
 const routes = [
   {
@@ -35,6 +36,10 @@ const routes = [
       {
         path: "/scatter",
         component: Scatter
+      },
+      {
+        path: "/bar",
+        component: Bar
       }
     ]
   }
