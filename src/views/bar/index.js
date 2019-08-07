@@ -99,6 +99,16 @@ export default class Bar extends Component {
     data.map((v, i) => {
       this.createMarkerBar(v.name, [v.v1, v.v2], i)
     })
+    this.themeLayer.eachLayer((layer) => {
+      console.log(layer)
+      var curProvince = L.polygon(layer.getLatLngs(), {
+        weight: 5,
+        color: "#0beaeb",
+        opacity: 1,
+        fill: false
+      })
+      this.map.addLayer(curProvince)
+    });
   }
   render() {
     return (
