@@ -22,6 +22,9 @@ export default class Bar extends Component {
   onLayerMouseout = (e) => {
     this.themeLayer.resetStyle(e.target)
   }
+  onLayerClick = (e) => {
+    console.log(e.target.feature.properties.name)
+  }
   createMarkerBar(name, value, index) {
     var myIcon = L.divIcon({ className: Styles.bar, iconSize: [25, 200], html: `<div id="marker-${index}" class="map-marker-bar"></div>` });
     L.marker(geoCoord[name].reverse(), {
@@ -76,7 +79,7 @@ export default class Bar extends Component {
       maxZoom: 18,
       zoom: 5,
       attributionControl: false,
-      zoomControl: false
+      zoomControl: true
     });
     this.map = map;
     this.themeLayer = L.geoJSON(china, {
@@ -92,7 +95,8 @@ export default class Bar extends Component {
       onEachFeature: (feature, layer) => {
         layer.on({
           mouseover: this.onLayerMouseover,
-          mouseout: this.onLayerMouseout
+          mouseout: this.onLayerMouseout,
+          click:this.onLayerClick
         })
       }
     }).addTo(map);
@@ -100,7 +104,6 @@ export default class Bar extends Component {
       this.createMarkerBar(v.name, [v.v1, v.v2], i)
     })
     this.themeLayer.eachLayer((layer) => {
-      console.log(layer)
       var curProvince = L.polygon(layer.getLatLngs(), {
         weight: 5,
         color: "#0beaeb",
